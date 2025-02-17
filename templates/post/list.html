@@ -9,19 +9,33 @@
             <th scope="col">body</th>
             <th scope="col">publish</th>
             <th scope="col">status</th>
+            <th scope="col"> action</th>
         </tr>
         </thead>
 
         {% for post in posts %}
             <tbody>
             <tr>
-                <td>title: <a href="{% url 'posts:detail' post.id %}"> {{ post.title }}</a></td>
-                <td>body: {{ post.body }}</td>
+
+                <td><a href="{% url 'posts:detail' post.id %}" class="btn btn-outline-primary"> {{ post.title }}</a>
+                </td>
+                <td>{{ post.body }}</td>
                 <td>{{ post.publish }}</td>
                 <td>{{ post.status }}</td>
+                <td>
+                    <a href="{% url 'posts:edit' post.id %}"> edit</a>
+
+                    <a href="{% url 'posts:delete' post.id %}" class="btn btn-outline-danger"> delete</a>
+                </td>
             </tr>
             </tbody>
 
         {% endfor %}
+
     </table>
+
+   {% include 'post/pagination.html'  with page=posts %} {# posts bu data basadan kevotgan postlari #}
+
+    <a href=" {% url 'posts:create' %}" class="btn  btn-dark"> create </a>
+
 {% endblock %}
