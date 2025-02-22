@@ -1,4 +1,5 @@
 from django.contrib.admin.templatetags.admin_list import paginator_number
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
@@ -7,7 +8,7 @@ from .forms import PostCreatModel
 
 
 # Create your views here.
-
+# @login_required(login_url='login')
 def index(request):
     posts = Post.published.all()
     q = request.GET.get('q')
