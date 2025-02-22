@@ -13,11 +13,7 @@ def index(request):
     q = request.GET.get('q')
     if q and q != "None":
         posts = posts.filter(title__icontains=q) | posts.filter(body__icontains=q)
-        # return render(request, 'post/list.html', {
-        #     'posts': posts,
-        #     'q': q
-        # })
-    #  pagination  start
+
     paginator = Paginator(posts, 5)  # paginationga limit berilvot
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)  # postni bolib chiqvotdi shu yerda
@@ -73,3 +69,5 @@ def edit_view(request, id):
 def delete_view(request, id):
     Post.published.delete(id=id)
     return redirect("posts:index")
+
+

@@ -27,5 +27,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('posts.urls')),
+    path('sign_up/', include('accounts.urls')),
 
 ]
